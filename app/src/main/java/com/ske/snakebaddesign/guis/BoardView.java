@@ -128,4 +128,6 @@ public class BoardView extends View {
         return position % boardSize;
     }
 
+
+
 }

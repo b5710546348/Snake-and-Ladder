@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.ske.snakebaddesign.R;
 import com.ske.snakebaddesign.guis.BoardView;
+import com.ske.snakebaddesign.models.Game;
 
 import java.util.Random;
 
@@ -25,6 +26,7 @@ public class GameActivity extends AppCompatActivity {
     private Button buttonTakeTurn;
     private Button buttonRestart;
     private TextView textPlayerTurn;
+    private Game game = Game.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,12 +71,12 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void takeTurn() {
-        final int value = 1 + new Random().nextInt(6);
+        final int distance = game.getDie().getCurrentFace();
         String title = "You rolled a die";
-        String msg = "You got " + value;
+        String msg = "You got " + distance;
         OnClickListener listener = new OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                moveCurrentPiece(value);
+                moveCurrentPiece(distance);
                 dialog.dismiss();
             }
         };
